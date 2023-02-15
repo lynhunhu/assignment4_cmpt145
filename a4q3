@@ -1,0 +1,73 @@
+#Name: Nhu Nhu Ly
+#NSID: cvd326
+#instructor's name: Eric Neufeld
+#student number: 11333935
+#course number: 27177
+#lab section: Monday 1:30 - 2:50 - 28623
+
+import sys
+class Statistics(object):
+    def __init__(self):
+        self.__count = 0     
+        self.__avg = 0  
+        self.__max_val = 0
+        self.__min_val = 0
+
+
+    def add(self, value):
+        self.__count += 1
+        k = self.__count           # convenience
+        diff = value - self.__avg  # convenience
+        self.__avg += diff / k
+
+
+    def mean(self):
+        return self.__avg
+
+    def count(self):
+        return self.__count
+
+    def min(self, value):
+        self.__min = sys.maxsize      #assign min as a biggest number in the system
+        for i in value:        #compare i to every element in value, assign which
+            if i < self.__min:        #is smaller than min to min until the smallest one found, the operation stops itself.
+                self.__min = i
+        
+        return self.__min
+
+    def max(self, value):
+        self.__max = (sys.maxsize) * (-1)    #multiply 'min formula' by -1 to make it the smallest number in the system
+
+        for i in value:
+            if i > self.__max:           #doing the same like min(value) operation until find max number
+                self.__max = i
+        
+        return self.__max
+
+    def range(self, value):
+        self.__min_val = self.min(value)         #call the 2 above operations to find max and min number in value provided
+        self.__max_val = self.max(value)
+
+        self.__range_val = self.__max_val - self.__min_val      #find range
+
+        return self.__range_val
+
+    def mode(self, value): 
+        self.__count = 1
+        for item in value:           #assume that the least frequently that a number would occur is 1
+            a = value.count(item)    #the loop would run from the first element and assign 
+            if a > self.__count:            #its occurrence to a, assign count to a if a greater than count
+                self.__occ = item           #every time the loop finds any greater occurrence, it will be assign
+                self.__count = a            #to count.
+        
+        return (self.__count,self.__occ)
+    
+                
+
+                
+
+
+    
+
+
+
